@@ -23,7 +23,7 @@ import { Transaction } from './entities/transaction.entity';
       // database: process.env.DB_NAME || 'wallet_system',
         url: process.env.DATABASE_URL, // Single connection string
       entities: [User, ApiKey, Wallet, Transaction],
-  synchronize: false, 
+  synchronize: true, 
  ssl: {
     rejectUnauthorized: false, // Always use SSL on Render
   },
