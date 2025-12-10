@@ -13,25 +13,6 @@ Features:
 
 ---
 
-## Table of Contents
-
-1. [Requirements](#requirements)  
-2. [Installation & Setup](#installation--setup)  
-3. [Environment Variables](#environment-variables)  
-4. [Running the Application](#running-the-application)  
-5. [API Endpoints](#api-endpoints)  
-    - [Authentication (Google OAuth)](#authentication-google-oauth)  
-    - [API Key Management](#api-key-management)  
-    - [Wallet Deposit (Paystack)](#wallet-deposit-paystack)  
-    - [Webhook](#paystack-webhook)  
-    - [Wallet Balance](#get-wallet-balance)  
-    - [Wallet Transfer](#wallet-transfer)  
-    - [Transaction History](#transaction-history)  
-6. [Error Handling](#error-handling)  
-7. [Notes](#notes)  
-
----
-
 ## Requirements
 
 - Node.js >= 20  
