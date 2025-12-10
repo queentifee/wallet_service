@@ -14,7 +14,7 @@ import { KeysModule } from 'src/keys/keys.module';
     TypeOrmModule.forFeature([Wallet, Transaction, User]),
     KeysModule,
     JwtModule.register({
-      secret: process.env.JWT_SECRET || 'jwt_secret_key',
+      secret: process.env.JWT_SECRET_KEY || 'jwt_secret_key',
     }),
   ],
   controllers: [WalletController],
