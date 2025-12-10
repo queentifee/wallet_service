@@ -21,11 +21,11 @@ import { Transaction } from './entities/transaction.entity';
       // username: process.env.DB_USER || 'postgres',
       // password: process.env.DB_PASSWORD || 'postgres',
       // database: process.env.DB_NAME || 'wallet_system',
-        url: process.env.DATABASE_URL, // Single connection string
+        url: process.env.DATABASE_URL, 
       entities: [User, ApiKey, Wallet, Transaction],
-  synchronize: true, 
+  synchronize: false, 
  ssl: {
-    rejectUnauthorized: false, // Always use SSL on Render
+    rejectUnauthorized: false, 
   },
     }),
     AuthModule,
