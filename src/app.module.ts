@@ -21,7 +21,7 @@ import { Transaction } from './entities/transaction.entity';
       // database: process.env.DB_NAME || 'wallet_system',
       url: process.env.DATABASE_URL, 
       entities: [User, ApiKey, Wallet, Transaction],
-  synchronize: true, 
+  synchronize: false, 
  ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false,
     }),
     AuthModule,
