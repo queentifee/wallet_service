@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { AuthController } from './auth.controller';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import { GoogleStrategy } from './strategies/google.strategy';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from 'src/entities/user.entity';
@@ -11,7 +12,7 @@ import { Wallet } from 'src/entities/wallet.entity';
   imports: [
     TypeOrmModule.forFeature([User, Wallet]),
     JwtModule.register({
-      secret: process.env.JWT_SECRET_KEY || "jwt_secret_key",
+      secret: process.env.JWT_SECRET || "jwt_secret_key",
       signOptions: { expiresIn: '1h' },
     }),
   ],

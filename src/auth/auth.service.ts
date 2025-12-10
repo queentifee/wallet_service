@@ -23,29 +23,51 @@ export class AuthService {
 }
 
     async validateGoogleUser(profile: any) {
-        const { email, firstName, lastName, picture } = profile;
+  const { id: googleId, email, firstName, lastName, picture } = profile;
 
-        let user = await this.userRepository.findOne({ where: { email } });
+  let user = await this.userRepository.findOne({
+    where: { email },
+    relations: ['wallet'], 
+  });
 
-        if (!user) {
-            user = this.userRepository.create({
-                email,
-                firstName,
-                lastName,
-                picture,
-            });
-       user = await this.userRepository.save(user);
+  if (!user) {
+    // Create user
+    user = this.userRepository.create({
+      email,
+      firstName,
+      lastName,
+      picture,
+      googleId,
+    });
 
-        const wallet = this.walletRepository.create({
+    user = await this.userRepository.save(user);
+
+    // Create wallet
+    const wallet = this.walletRepository.create({
       user,
       balance: 0,
-      walletNumber: this.generateWalletNumber(), 
+      walletNumber: this.generateWalletNumber(),
     });
 
     await this.walletRepository.save(wallet);
-  }     
-        return user;
-    }
+
+    user.wallet = wallet;
+  }
+
+  // Ensure wallet exists even for existing users
+  if (!user.wallet) {
+    const wallet = this.walletRepository.create({
+      user,
+      balance: 0,
+      walletNumber: this.generateWalletNumber(),
+    });
+    await this.walletRepository.save(wallet);
+    user.wallet = wallet;
+  }
+
+  return user;
+}
+
 
     generateJwt(user: User) {
         return this.jwtService.sign({

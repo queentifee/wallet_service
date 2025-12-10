@@ -1,6 +1,4 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
 import { AuthModule } from './auth/auth.module';
@@ -21,9 +19,9 @@ import { Transaction } from './entities/transaction.entity';
       // username: process.env.DB_USER || 'postgres',
       // password: process.env.DB_PASSWORD || 'postgres',
       // database: process.env.DB_NAME || 'wallet_system',
-        url: process.env.DATABASE_URL, 
+      url: process.env.DATABASE_URL, 
       entities: [User, ApiKey, Wallet, Transaction],
-  synchronize: false, 
+  synchronize: true, 
  ssl: {
     rejectUnauthorized: false, 
   },
@@ -32,7 +30,5 @@ import { Transaction } from './entities/transaction.entity';
     KeysModule,
     WalletModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
 })
 export class AppModule {}

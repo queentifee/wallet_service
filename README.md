@@ -285,5 +285,11 @@ Maximum 5 active API keys per user.
 
 Paystack webhooks must be configured with your ngrok HTTPS URL for local development.
 
+## 🔗 Links
+
+- **Live API**: https://wallet-service-p5yz.onrender.com
+- **Documentation**: https://wallet-service-p5yz.onrender.com/api/docs
+- **GitHub**: https://github.com/queentifee/wallet-service
+
 License
 MIT License
