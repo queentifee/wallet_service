@@ -1,4 +1,5 @@
 import { NestFactory } from '@nestjs/core';
+import { DataSource } from 'typeorm';
 import { ValidationPipe } from '@nestjs/common';
 import { AppModule } from './app.module';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
@@ -41,19 +42,15 @@ async function bootstrap() {
     .build();
 
   const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('api/docs', app, document, {
-    customSiteTitle: 'Wallet Service API Docs',
-    customfavIcon: 'https://nestjs.com/favicon.ico',
-    customJs: [
-      'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui-bundle.min.js',
-      'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui-standalone-preset.min.js',
-    ],
-    customCssUrl: [
-      'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui.min.css',
-      'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui-standalone-preset.min.css',
-      'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui.css',
-    ],
+   SwaggerModule.setup('api/docs', app, document, {
+    swaggerOptions: {
+      displayOperationId: true,
+      defaultModelsExpandDepth: 1,
+      docExpansion: 'list',
+    },
   });
+  const dataSource = app.get(DataSource);
+  await dataSource.runMigrations();
   
   await app.listen(3000);
   console.log('Wallet service running on http://localhost:3000');
