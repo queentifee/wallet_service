@@ -50,8 +50,10 @@ async function bootstrap() {
     },
   });
   const dataSource = app.get(DataSource);
-  await dataSource.runMigrations();
-  
+console.log('Pending migrations:', (await dataSource.showMigrations()));
+await dataSource.runMigrations();
+console.log('Migrations complete');
+
   await app.listen(3000);
   console.log('Wallet service running on http://localhost:3000');
   console.log('API Documentation available at http://localhost:3000/api/docs');
