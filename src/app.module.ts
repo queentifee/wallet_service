@@ -19,7 +19,7 @@ import { Transaction } from './entities/transaction.entity';
       username: process.env.DB_USER || 'postgres',
       password: process.env.DB_PASSWORD || 'postgres',
       database: process.env.DB_NAME || 'wallet_system',
-      // url: process.env.DATABASE_URL, 
+      url: process.env.DATABASE_URL, 
       entities: [User, ApiKey, Wallet, Transaction],
   synchronize: false, 
  ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false,
